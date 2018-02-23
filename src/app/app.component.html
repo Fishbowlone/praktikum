@@ -1,0 +1,41 @@
+<html>
+<head>
+  <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<header class="header">
+  <nav class="navigation">
+    <div class="wrapper">
+      <ul class="navigation-list ul-reset">
+        <li class="navigation-item ib">
+          <a routerLink="/dashboard" class="navigation-link">
+            Home
+          </a>
+        </li>
+        <li class="navigation-item ib">
+          <a routerLink="/dashboard" class="navigation-link">
+            Standorte
+          </a>
+        </li>
+        <li class="navigation-item ib">
+          <a routerLink="/dashboard" class="navigation-link">
+            Top Mitarbeiter
+          </a>
+        </li>
+        <li class="navigation-item ib">
+          <a routerLink="/heroes" class="navigation-link">
+            Mitarbeiter
+          </a>
+        </li>
+        <li class="navigation-item ib">
+          <a href="#" class="navigation-link">
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
+<body>
+<div class="col-4"><h3>{{header}}</h3></div>
+<router-outlet></router-outlet>
+</body>
+</html>

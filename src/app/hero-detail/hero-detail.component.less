@@ -1,0 +1,138 @@
+@button-hover-background-color: #cfd8dc;
+@header-color: #541861;
+
+.font-style {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+}
+.information-boxes {
+  .font-style;
+  padding: 5px 5px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin: 5px 0 5px 6px;
+  background-color: aliceblue;
+  color: black;
+  position: relative;
+  left: 390px;
+  bottom: 225px;
+}
+.header {
+  text-transform: uppercase;
+  font-family: fantasy;
+  font-size: 20px;
+  font-weight: bold;
+  color: @header-color;
+}
+.fav {
+  width: 880px;
+  background-color: aliceblue;
+}
+input {
+  width: 700px;
+  .information-boxes;
+}
+.props {
+  width: 700px;
+}
+span {
+  width: 180px;
+  .information-boxes;
+}
+select {
+  border: none;
+  background-color: aliceblue;
+  .font-style;
+}
+.aboutme {
+  position: relative;
+  left: 394px;
+  bottom: 232px;
+  .header;
+}
+.imageurl {
+  padding-top: 15px;
+  margin-bottom: 2px;
+}
+.content {
+  .font-style;
+  color: #3c3d3a;
+  position: relative;
+  left: 390px;
+  bottom: 220px;
+  margin-top: 5px;
+  width: 500px;
+}
+.col-5 {
+  .header;
+  margin-bottom: 10px;
+  position: relative;
+  left: 394px;
+  bottom: 230px;
+}
+.col-6 {
+  width: 100%;
+  box-sizing: border-box;
+}
+.descrip {
+  .header;
+}
+.col-8 {
+  .header;
+  margin-bottom: 5px;
+  color: @header-color;
+}
+.col-9 {
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+button {
+  .font-style;
+  background-color: #eee;
+  border: none;
+  border-radius: 4px;
+  cursor: hand;
+  padding: 16px 32px;
+  text-decoration: none;
+  margin: 10px 2px 4px;
+  position: relative;
+  left: 394px;
+  bottom: 226px;
+  &:hover {
+    background-color: @button-hover-background-color;
+    &:disabled {
+      background-color: #eee;
+      color: #ccc;
+      cursor: auto;
+    }
+  }
+}
+.fa {
+  padding: 13px;
+  font-size: 18px;
+  width: 18px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 25%;
+  &:hover {
+    opacity: 0.7;
+  }
+}
+.fa-facebook {
+  background: #3B5998;
+  color: white;
+}
+.fa-twitter {
+  background: #55ACEE;
+  color: white;
+}
+.fa-google {
+  background: #dd4b39;
+  color: white;
+}
+@media only screen and (min-width: 768px) {
+  .col-6 {width: 700px;}
+  .col-7 {width: 880px;}
+}
