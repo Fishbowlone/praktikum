@@ -19,7 +19,7 @@ export class HeroesComponent implements OnInit {
 
   getHeroes(): void {
     this.heroService.getHeroes()
-      .subscribe(heroes => this.employees = heroes);
+      .subscribe(employees => this.employees = employees);
   }
 
   add(name: string): void {
@@ -35,5 +35,4 @@ export class HeroesComponent implements OnInit {
     this.employees = this.employees.filter(h => h !== hero);
     this.heroService.deleteHero(hero).subscribe();
   }
-
 }

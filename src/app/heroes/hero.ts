@@ -29,7 +29,6 @@ export interface IEmployee {
 }
 
 export class Employee implements IEmployee {
-
   since: Date;
   id: number;
   name: string;

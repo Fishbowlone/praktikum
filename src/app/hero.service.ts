@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable, OnDestroy, OnInit} from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
@@ -8,22 +8,32 @@ import { MessageService } from './message.service';
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap} from 'rxjs/operators';
+import {LocalstorageService} from './localstorage.service';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
 
 @Injectable()
-export class HeroService {
+export class HeroService implements OnInit, OnDestroy {
   private heroesUrl = 'api/heroes';  // URL to web api
 
   constructor(
     private http: HttpClient,
-    private messageService: MessageService) { }
+    private messageService: MessageService,
+    private localstorageService: LocalstorageService,
+  ) { }
+
+  ngOnInit(): void {
+    this.localstorageService.LoadLocalstorage();
+  }
+
+  ngOnDestroy(): void {
+    console.debug('onDestroy');
+  }
 
   /** GET hero by id. Will 404 if id not found */
   getHero(id: number): Observable<IEmployee> {
-    console.debug('')
     const url = `${this.heroesUrl}/${id}`;
     return this.http.get<IEmployee>(url).pipe(
         tap(() => this.log(`fetched hero id=${id}`)),
@@ -35,6 +45,7 @@ export class HeroService {
         })
     );
   }
+
   /** GET heroes from the server */
   getHeroes (): Observable<Employee[]> {
     return this.http.get<Employee[]>(this.heroesUrl)
@@ -43,6 +54,7 @@ export class HeroService {
         catchError(this.handleError('getHeroes', []))
       );
   }
+
   /** PUT: update the hero on the server */
   updateHero (hero: IEmployee): Observable<any> {
     return this.http.put(this.heroesUrl, hero, httpOptions).pipe(
@@ -50,12 +62,14 @@ export class HeroService {
       catchError(this.handleError<any>('updateHero'))
     );
   }
+
   /**
    * Handle Http operation that failed.
    * Let the app continue.
    * @param operation - name of the operation that failed
    * @param result - optional value to return as the observable result
    */
+
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 
@@ -69,6 +83,7 @@ export class HeroService {
       return of(result as T);
     };
   }
+
   /** POST: add a new hero to the server */
   addHero (hero: Employee): Observable<Employee> {
     return this.http.post<Employee>(this.heroesUrl, hero, httpOptions).pipe(
@@ -76,6 +91,7 @@ export class HeroService {
       catchError(this.handleError<Employee>('addHero'))
     );
   }
+
   /** DELETE: delete the hero from the server */
   deleteHero (hero: Employee | number): Observable<Employee> {
     const id = typeof hero === 'number' ? hero : hero.id;
@@ -86,6 +102,7 @@ export class HeroService {
       catchError(this.handleError<Employee>('deleteHero'))
     );
   }
+
   /** GET heroes whose name contains search term */
   searchHeroes(term: string): Observable<Employee[]> {
     if (!term.trim()) {
@@ -97,6 +114,7 @@ export class HeroService {
       catchError(this.handleError<Employee[]>('searchHeroes', []))
     );
   }
+
   /** Log a HeroService message with the MessageService */
   private log(message: string) {
     this.messageService.add('HeroService: ' + message);

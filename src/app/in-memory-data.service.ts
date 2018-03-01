@@ -1,10 +1,11 @@
 import {InMemoryDbService} from 'angular-in-memory-web-api';
+import {Employee} from './heroes/hero';
 
 export class InMemoryDataService implements InMemoryDbService {
   createDb() {
-    const heroes = [
+    const localHeroes = [
       {
-        since: new Date(1990, 1, 1),
+        since: new Date(),
         id: 11,
         name: 'Max Mustermann',
         birthday: new Date(1990, 6, 4),
@@ -12,8 +13,7 @@ export class InMemoryDataService implements InMemoryDbService {
         residence: 'Wellingsbüttel',
         department: 'Verwaltung',
         phone: '+49 176 82 90 84 12',
-        interests: 'Snowboarden, Fahrradfahren, Grillen, in der Sonne chillen, ' +
-        'Elektronik & Apple ;)',
+        interests: 'Snowboarden, Fahrradfahren, Grillen, in der Sonne chillen, ' + 'Elektronik & Apple ;)',
         slogan: 'Stillstand ist Rückschritt',
         thing1: 'Katja',
         thing2: 'Weber Grill',
@@ -37,7 +37,7 @@ export class InMemoryDataService implements InMemoryDbService {
         since: new Date(2018, 1, 1),
         id: 12,
         name: 'Julian Schubert',
-        birthday: new Date(1998,6,4),
+        birthday: new Date(1998, 6, 4),
         birthplace: 'Hamburg',
         residence: 'Barmbek',
         department: 'Entwicklung',
@@ -61,12 +61,12 @@ export class InMemoryDataService implements InMemoryDbService {
         facebook: 'https://www.facebook.com/',
         twitter: 'https://twitter.com/',
         google: 'https://www.google.de/',
-        },
+      },
       {
         since: new Date(2018, 1, 1),
         id: 13,
         name: 'Dennis Busch',
-        birthday: new Date(1998,6,4),
+        birthday: new Date(1998, 6, 4),
         birthplace: 'Hamburg',
         residence: 'Barmbek',
         department: 'Entwicklung',
@@ -95,7 +95,7 @@ export class InMemoryDataService implements InMemoryDbService {
         since: new Date(2018, 1, 1),
         id: 14,
         name: 'Anna Dumler',
-        birthday: new Date(1998,6,4),
+        birthday: new Date(1998, 6, 4),
         birthplace: 'Hamburg',
         residence: 'Barmbek',
         department: 'Entwicklung',
@@ -121,6 +121,8 @@ export class InMemoryDataService implements InMemoryDbService {
         google: 'https://www.google.de/',
       },
     ];
-    return {heroes};
+    const loadedHeroes = JSON.parse(localStorage.getItem('Data'));
+    console.debug(loadedHeroes);
+    return {heroes: loadedHeroes || localHeroes };
   }
 }

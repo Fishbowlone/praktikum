@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
-import { Employee } from '../heroes/hero';
+import {Employee, IEmployee} from '../heroes/hero';
 import { HeroService } from '../hero.service';
 
 @Component({
@@ -23,9 +23,6 @@ export class HeroDetailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getHero();
-  }
-  getHero(): void {
     const id = +this.route.snapshot.paramMap.get('id');
     this.heroService.getHero(id)
       .subscribe(hero => this.hero = new Employee(hero));
@@ -34,6 +31,7 @@ export class HeroDetailComponent implements OnInit {
     window.location.reload();
   }
   save(): void {
+    console.debug('save');
     this.heroService.updateHero(this.hero)
       .subscribe(() => this.goBack());
   }
