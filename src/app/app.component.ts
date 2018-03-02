@@ -18,7 +18,7 @@ export class AppComponent {
   ) { }
 
   @HostListener('window:beforeunload', [ '$event' ])
-  beforeUnloadHander(event) {
+  beforeUnloadHander() {
     this.heroService.getHeroes()
       .subscribe(employees => this.localstorageService.SaveLocalstorage(employees));
   }

@@ -1,8 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Location } from '@angular/common';
 
-import {Employee, IEmployee} from '../heroes/hero';
+import {Employee} from '../heroes/hero';
 import { HeroService } from '../hero.service';
 
 @Component({
@@ -14,12 +13,10 @@ import { HeroService } from '../hero.service';
 export class HeroDetailComponent implements OnInit {
   @Input() hero: Employee;
   value = '';
-  onEnter(value: string) { this.value = value; }
 
   constructor(
     private route: ActivatedRoute,
     private heroService: HeroService,
-    private location: Location
   ) {}
 
   ngOnInit(): void {
@@ -31,7 +28,6 @@ export class HeroDetailComponent implements OnInit {
     window.location.reload();
   }
   save(): void {
-    console.debug('save');
     this.heroService.updateHero(this.hero)
       .subscribe(() => this.goBack());
   }

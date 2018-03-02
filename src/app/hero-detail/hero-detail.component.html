@@ -31,18 +31,20 @@
   <p class="col-5">Mein Lieblings...</p>
   <div><span>
     <form>
-      <select class="favorite" name="favorite">
+      <label>
+<select class="favorite" name="favorite">
         <option value="book">Buch</option>
         <option value="bood">Essen</option>
         <option value="book">Trinken</option>
         <option value="book">Film</option>
       </select>
+</label>
     </form>
   </span><input (keyup.enter)="save()" class="col-6" [(ngModel)]="hero.favbook" placeholder="Hier eintragen..."></div>
 
   <div><span>
     <form>
-      <select id="favorite" name="favorite">
+      <label for="favorite"></label><select id="favorite" name="favorite">
         <option value="book">Buch</option>
         <option value="bood">Essen</option>
         <option value="book">Trinken</option>
